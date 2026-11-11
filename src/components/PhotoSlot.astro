@@ -1,0 +1,69 @@
+---
+// Slot foto. `src` diisi untuk foto asli; kosong → placeholder bertanda.
+// Jangan diganti gambar stok. Lihat docs/08-aset.md.
+interface Props {
+  ratio?: '4/5' | '1/1' | '16/9';
+  caption?: string;
+  src?: string;
+  alt?: string;
+}
+
+const { ratio = '4/5', caption = 'FOTO PRODUK', src, alt } = Astro.props;
+
+// Intrinsic size per rasio → cukup untuk mencegah layout shift (CLS).
+const DIMS = {
+  '4/5': { width: 960, height: 1200 },
+  '1/1': { width: 1000, height: 1000 },
+  '16/9': { width: 1280, height: 720 },
+} as const;
+const dim = DIMS[ratio];
+---
+
+{src ? (
+  <figure class="slot" style={`--slot-ratio:${ratio}`}>
+    <img
+      src={src}
+      alt={alt ?? ''}
+      width={dim.width}
+      height={dim.height}
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
+) : (
+  <figure class="slot slot--empty" style={`--slot-ratio:${ratio}`}>
+    <span class="label slot__cap">{caption} · {ratio.replace('/', ':')}</span>
+  </figure>
+)}
+
+<style>
+  .slot {
+    aspect-ratio: var(--slot-ratio);
+    display: block;
+    margin: 0;
+    width: 100%;
+    /* Cegah item grid melar: tinggi mengikuti lebar, bukan sebaliknya */
+    align-self: start;
+    min-width: 0;
+    background: var(--ink);
+  }
+
+  /* Hanya slot kosong yang bertanda dashed. Foto asli tanpa bingkai. */
+  .slot--empty {
+    border: 1px dashed var(--hairline);
+    display: grid;
+    place-items: center;
+  }
+
+  .slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .slot__cap {
+    color: var(--grey);
+    text-align: center;
+    padding-inline: var(--s4);
+  }
+</style>

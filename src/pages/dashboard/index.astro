@@ -1,0 +1,570 @@
+---
+import Base from '../../layouts/Base.astro';
+import Wordmark from '../../components/Wordmark.astro';
+import { base } from '../../config/base';
+import { SITE } from '../../config/site';
+
+const palette = [
+  { name: 'Jet Black', hex: '#0A0A0A', role: 'Latar utama. Dasar seluruh halaman.' },
+  { name: 'Pure White', hex: '#FFFFFF', role: 'Teks utama di atas hitam.' },
+  { name: 'Rebel Red', hex: '#E60000', role: 'Aksen saja. Maks 5% layar, bukan body copy (kontras 4.1:1).' },
+  { name: 'Concrete Grey', hex: '#808080', role: 'Teks sekunder, label, garis hairline.' },
+];
+
+const logos = [
+  { file: 'bsng-logo-primary.svg', note: 'Putih di hitam', bg: 'ink' },
+  { file: 'bsng-logo-inverse.svg', note: 'Hitam di putih', bg: 'paper' },
+  { file: 'bsng-logo-mono-white.svg', note: 'Satu warna, putih', bg: 'ink' },
+  { file: 'bsng-logo-mono-black.svg', note: 'Satu warna, hitam', bg: 'paper' },
+];
+
+const channels = [
+  { label: 'Instagram', handle: '@bsng.co', href: SITE.social.instagram },
+  { label: 'TikTok', handle: '@bsng.co', href: SITE.social.tiktok },
+  { label: 'X', handle: '@bsng.co', href: SITE.social.x },
+  { label: 'Shopee', handle: 'Toko BSNG.', href: SITE.shopeeShopUrl },
+];
+
+const docs = [
+  '00-brief.md', '01-brand.md', '02-arsitektur.md', '03-konten.md', '04-desain.md',
+  '05-teknis.md', '06-rencana-kerja.md', '07-deploy.md', '08-aset.md',
+];
+---
+
+<Base
+  title="Dashboard Brand | BSNG."
+  description="Panel brand BSNG.: identitas, palet, tipografi, logo, kanal, dan dokumen. Halaman produk ada di /chapter01/."
+  noindex
+>
+  <section class="head">
+    <div class="wrap">
+      <p class="label">Internal · tidak diindeks</p>
+      <div class="head__mark"><Wordmark fluid /></div>
+      <p class="head__tagline label">{SITE.tagline}</p>
+      <dl class="head__meta">
+        <div><dt>Chapter</dt><dd>{SITE.chapter}</dd></div>
+        <div><dt>Produk</dt><dd>{SITE.product}</dd></div>
+        <div><dt>Status</dt><dd>Made to order</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap stack">
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Identitas</h2>
+        <p class="card__note">Cara brand menyebut dirinya.</p>
+      </header>
+      <dl class="kv">
+        <div><dt>Nama</dt><dd>BSNG.</dd></div>
+        <div><dt>Dibaca</dt><dd>Bising</dd></div>
+        <div><dt>Posisi</dt><dd>Minimalis Rebel</dd></div>
+        <div><dt>Kategori</dt><dd>Streetwear Indonesia</dd></div>
+        <div><dt>Tagline</dt><dd>{SITE.tagline}</dd></div>
+        <div><dt>Handle</dt><dd>@bsng.co</dd></div>
+      </dl>
+      <p class="card__note">
+        Nada bicara: formal-dingin, bukan gaul. Tanpa emoji, tanpa tanda seru ganda.
+        Titik setelah nama bagian dari logo, bukan hiasan.
+      </p>
+    </section>
+
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Palet</h2>
+        <p class="card__note">Empat warna. Tidak ada tambahan.</p>
+      </header>
+      <ul class="palette">
+        {palette.map((c) => (
+          <li class="swatch">
+            <span class="swatch__chip" style={`background:${c.hex}`}></span>
+            <span class="swatch__name">{c.name}</span>
+            <span class="swatch__hex">{c.hex}</span>
+            <span class="swatch__role">{c.role}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Tipografi</h2>
+        <p class="card__note">Dua keluarga. Lisensi OFL, di-host sendiri.</p>
+      </header>
+      <div class="type">
+        <div class="type__item">
+          <p class="type__sample type__sample--display">MAXIMUM NOISE.</p>
+          <div class="type__meta">
+            <p><strong>Anton</strong> · 400, satu bobot</p>
+            <p class="card__note">Display, wordmark, heading.</p>
+            <a class="link" href={`${base}fonts/Anton-400.woff2`} download>Unduh Anton-400.woff2 →</a>
+          </div>
+        </div>
+        <div class="type__item">
+          <p class="type__sample type__sample--mono">Bising bukan soal volume. Satu produk, satu warna, satu pesan.</p>
+          <div class="type__meta">
+            <p><strong>JetBrains Mono</strong> · 100–800, variabel</p>
+            <p class="card__note">Detail, label, body kecil.</p>
+            <a class="link" href={`${base}fonts/JetBrainsMono-var.woff2`} download>Unduh JetBrainsMono-var.woff2 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Logo</h2>
+        <p class="card__note">Empat varian. Selalu dari SVG, jangan diketik sebagai teks.</p>
+      </header>
+      <ul class="logos">
+        {logos.map((l) => (
+          <li class="logo">
+            <span class={`logo__tile logo__tile--${l.bg}`}>
+              <img src={`${base}logo/${l.file}`} alt={`Logo BSNG. varian ${l.note}`} width="420" height="179" loading="lazy" />
+            </span>
+            <span class="logo__name">{l.file}</span>
+            <span class="logo__note">{l.note}</span>
+            <a class="link" href={`${base}logo/${l.file}`} download>Unduh →</a>
+          </li>
+        ))}
+      </ul>
+      <p class="card__note">
+        Clear space minimal 1× tinggi titik. Minimum 96 px digital, 28 mm cetak.
+        Jangan regangkan, jangan ganti warna di luar empat varian ini.
+      </p>
+    </section>
+
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Produk aktif</h2>
+        <p class="card__note">Halaman produk: <a class="link" href={`${base}chapter01/`}>/chapter01/</a></p>
+      </header>
+      <div class="product">
+        <img
+          class="product__photo"
+          src={`${base}images/bsng-produk-depan.jpg`}
+          alt="Kaos The Core Anthem tampak depan, Jet Black, logo BSNG. besar di dada"
+          width="1024" height="1024" loading="lazy"
+        />
+        <div class="product__body">
+          <h3 class="product__name">{SITE.product}</h3>
+          <dl class="kv kv--tight">
+            <div><dt>Chapter</dt><dd>{SITE.chapter}</dd></div>
+            <div><dt>Harga</dt><dd>{SITE.priceLabel}</dd></div>
+            <div><dt>Status</dt><dd>Made to order</dd></div>
+            <div><dt>Bahan</dt><dd>Combed 24s–30s</dd></div>
+            <div><dt>Potongan</dt><dd>Regular fit</dd></div>
+            <div><dt>Sablon</dt><dd>DTF doff</dd></div>
+          </dl>
+          <div class="acts">
+            <a class="link" href={`${base}chapter01/`}>Halaman produk →</a>
+            <a class="link" href={SITE.shopeeProductUrl} target="_blank" rel="noopener noreferrer">Listing Shopee →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Kanal</h2>
+        <p class="card__note">Kontak lewat Instagram DM. Tidak ada WhatsApp.</p>
+      </header>
+      <ul class="channels">
+        {channels.map((c) => (
+          <li>
+            <a href={c.href} target="_blank" rel="noopener noreferrer">
+              <span class="channels__label">{c.label}</span>
+              <span class="channels__handle">{c.handle}</span>
+              <span class="channels__arrow">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="card">
+      <header class="card__head">
+        <h2 class="card__title">Dokumen brand</h2>
+        <p class="card__note">Ada di <code>docs/</code> repo, dibuka lewat editor.</p>
+      </header>
+      <ul class="docs">
+        {docs.map((d) => <li>{d}</li>)}
+      </ul>
+      <p class="card__note">
+        Mulai dari <code>01-brand.md</code> untuk aturan visual dan <code>03-konten.md</code>
+        untuk copy final.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .head {
+    padding-block: clamp(40px, 5vw, 64px) var(--s7);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .head__mark {
+    margin-top: var(--s5);
+    max-width: 520px;
+  }
+
+  .head__tagline {
+    margin-top: var(--s4);
+    letter-spacing: 0.42em;
+    color: var(--grey);
+  }
+
+  .head__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s2) var(--s6);
+    margin-top: var(--s6);
+  }
+
+  .head__meta div {
+    display: flex;
+    gap: var(--s2);
+    align-items: baseline;
+  }
+
+  .head__meta dt {
+    font-size: var(--t-label);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .head__meta dd {
+    font-size: 13px;
+  }
+
+  .stack {
+    display: grid;
+    gap: var(--s6);
+    padding-block: var(--s7) var(--section-y);
+  }
+
+  .card {
+    border: 1px solid var(--hairline);
+    padding: var(--s5);
+    display: grid;
+    gap: var(--s5);
+  }
+
+  @media (min-width: 720px) {
+    .card {
+      padding: var(--s6);
+    }
+  }
+
+  .card__head {
+    display: grid;
+    gap: var(--s1);
+  }
+
+  .card__title {
+    font-size: var(--t-h3);
+  }
+
+  .card__note {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--grey);
+    max-width: 68ch;
+  }
+
+  .card__note code {
+    color: var(--paper);
+  }
+
+  .kv {
+    display: grid;
+    gap: var(--s2);
+  }
+
+  @media (min-width: 640px) {
+    .kv {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s3) var(--s5);
+    }
+  }
+
+  .kv div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s3);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: var(--s2);
+  }
+
+  @media (min-width: 640px) {
+    .kv div {
+      flex-direction: column;
+      gap: var(--s1);
+    }
+  }
+
+  .kv dt {
+    font-size: var(--t-label);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .kv dd {
+    font-size: 14px;
+  }
+
+  .palette {
+    list-style: none;
+    display: grid;
+    gap: var(--s4);
+  }
+
+  @media (min-width: 640px) {
+    .palette {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .palette {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .swatch {
+    display: grid;
+    gap: var(--s2);
+  }
+
+  .swatch__chip {
+    display: block;
+    height: 104px;
+    border: 1px solid var(--hairline);
+  }
+
+  .swatch__name {
+    font-size: 14px;
+  }
+
+  .swatch__hex {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--grey);
+  }
+
+  .swatch__role {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--grey);
+  }
+
+  .type {
+    display: grid;
+    gap: var(--s5);
+  }
+
+  @media (min-width: 860px) {
+    .type {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s6);
+    }
+  }
+
+  .type__item {
+    display: grid;
+    gap: var(--s4);
+    align-content: start;
+    padding-top: var(--s4);
+    border-top: 1px solid var(--hairline);
+  }
+
+  .type__sample {
+    color: var(--paper);
+  }
+
+  .type__sample--display {
+    font-family: var(--display);
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+  }
+
+  .type__sample--mono {
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+
+  .type__meta {
+    display: grid;
+    gap: var(--s1);
+    font-size: 13px;
+  }
+
+  .type__meta strong {
+    font-weight: 700;
+  }
+
+  .logos {
+    list-style: none;
+    display: grid;
+    gap: var(--s5);
+  }
+
+  .logos {
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    min-width: 0;
+  }
+
+  .logo > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .logo {
+    display: grid;
+    gap: var(--s2);
+    align-content: start;
+    min-width: 0;
+  }
+
+  .logo__tile {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 21 / 9;
+    padding: var(--s4);
+    border: 1px solid var(--hairline);
+  }
+
+  .logo__tile--ink {
+    background: var(--ink);
+  }
+
+  .logo__tile--paper {
+    background: var(--paper);
+  }
+
+  .logo__tile img {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+  }
+
+  .logo__name {
+    font-family: var(--mono);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .logo__note {
+    font-size: 12px;
+    color: var(--grey);
+  }
+
+  .product {
+    display: grid;
+    gap: var(--s5);
+    align-items: start;
+  }
+
+  @media (min-width: 720px) {
+    .product {
+      grid-template-columns: 220px 1fr;
+      gap: var(--s6);
+    }
+  }
+
+  .product__photo {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--hairline);
+  }
+
+  .product__body {
+    display: grid;
+    gap: var(--s4);
+    align-content: start;
+  }
+
+  .product__name {
+    font-family: var(--display);
+    font-size: var(--t-h3);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+
+  .kv--tight div {
+    padding-bottom: var(--s1);
+  }
+
+  .acts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s4);
+  }
+
+  .link {
+    font-family: var(--mono);
+    font-size: var(--t-label);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper);
+    border-bottom: 1px solid var(--red);
+    padding-bottom: 2px;
+  }
+
+  .link:hover {
+    color: var(--red);
+  }
+
+  .channels {
+    list-style: none;
+    display: grid;
+    gap: 1px;
+    background: var(--hairline);
+    border-block: 1px solid var(--hairline);
+  }
+
+  .channels a {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--s4);
+    align-items: baseline;
+    padding-block: var(--s3);
+    background: var(--ink);
+  }
+
+  .channels a:hover .channels__label,
+  .channels a:hover .channels__arrow {
+    color: var(--red);
+  }
+
+  .channels__label {
+    font-size: 14px;
+  }
+
+  .channels__handle {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--grey);
+  }
+
+  .channels__arrow {
+    font-size: 13px;
+  }
+
+  .docs {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--s2) var(--s4);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--grey);
+  }
+</style>

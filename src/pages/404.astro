@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+
+import { base } from '../config/base';
+---
+
+<Base title="404 — BSNG." description="Halaman tidak ditemukan.">
+  <section class="nf">
+    <div class="wrap">
+      <h1 class="nf__code">404</h1>
+      <p class="nf__text">
+        Halaman ini tidak ada. Mungkin sudah dihapus, mungkin tidak pernah dibuat.
+      </p>
+      <p class="nf__back">
+        <a class="inline-link" href={`${base}`}>Kembali ke Chapter 01</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 60vh;
+    display: grid;
+    align-items: center;
+    padding-block: var(--section-y);
+  }
+
+  .nf__code {
+    font-size: clamp(96px, 26vw, 320px);
+    line-height: 0.8;
+  }
+
+  .nf__text {
+    margin-top: var(--s5);
+    color: var(--grey);
+  }
+
+  .nf__back {
+    margin-top: var(--s6);
+  }
+
+</style>

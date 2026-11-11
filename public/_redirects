@@ -1,0 +1,7 @@
+# Redirect Cloudflare Pages. Satu aturan per baris: sumber tujuan kode
+# Rute lama sebelum restrukturisasi opencode → rute sekarang.
+
+/produk/            /chapter01/   301
+/produk             /chapter01/   301
+/chapter01/produk/  /chapter01/   301
+/chapter01/produk   /chapter01/   301

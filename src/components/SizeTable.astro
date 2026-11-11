@@ -1,0 +1,68 @@
+---
+import { SIZES } from '../config/site';
+---
+
+<div class="size-wrap">
+  <table class="size">
+    <thead>
+      <tr>
+        <th scope="col">Ukuran</th>
+        <th scope="col">Lebar dada</th>
+        <th scope="col">Panjang badan</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        SIZES.map((row) => (
+          <tr>
+            <th scope="row">{row.size}</th>
+            <td>{row.chest} cm</td>
+            <td>{row.length} cm</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .size-wrap {
+    overflow-x: auto;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .size {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 14px;
+    min-width: 420px;
+  }
+
+  th,
+  td {
+    text-align: right;
+    padding: var(--s4) var(--s3);
+    border-bottom: 1px solid var(--hairline);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  thead th {
+    font-size: var(--t-label);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  tbody th {
+    text-align: left;
+    font-weight: 700;
+    color: var(--paper);
+  }
+
+  td:first-of-type {
+    color: var(--paper);
+  }
+</style>

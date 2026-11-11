@@ -1,0 +1,253 @@
+---
+import Base from '../../layouts/Base.astro';
+import Wordmark from '../../components/Wordmark.astro';
+import Button from '../../components/Button.astro';
+import Section from '../../components/Section.astro';
+import SpecList from '../../components/SpecList.astro';
+import SizeTable from '../../components/SizeTable.astro';
+import PhotoSlot from '../../components/PhotoSlot.astro';
+import { SITE, hasShopee, contactLink } from '../../config/site';
+
+import { base } from '../../config/base';
+
+const specs = [
+  { label: 'Bahan', value: '100% Cotton Combed 24s–30s' },
+  { label: 'Potongan', value: 'Regular fit' },
+  { label: 'Warna', value: 'Jet Black (#0A0A0A)' },
+  { label: 'Sablon', value: 'DTF premium, finishing doff' },
+  { label: 'Detail', value: 'Inside neck print, hangtag doff' },
+  { label: 'Produksi', value: 'Made to order, 1–2 hari kerja' },
+  { label: 'Harga', value: SITE.priceLabel },
+];
+
+const faq = [
+  {
+    q: 'Apakah ready stock?',
+    a: 'Tidak. Semua dicetak setelah pesanan masuk.',
+  },
+  {
+    q: 'Berapa lama sampai?',
+    a: '1–2 hari kerja untuk produksi, ditambah waktu kirim sesuai layanan di Shopee.',
+  },
+  {
+    q: 'Bisa tukar ukuran?',
+    a: 'Bisa, selama mengikuti kebijakan pengembalian Shopee dan kondisi kaos masih baru.',
+  },
+  {
+    q: 'Apakah mengecil setelah dicuci?',
+    a: 'Combed 24s–30s menyusut minimal bila dicuci air dingin dan tidak dikeringkan dengan mesin panas.',
+  },
+];
+---
+
+<Base
+  title="The Core Anthem — Spesifikasi & Ukuran | BSNG."
+  description="Bahan, sablon, tabel ukuran S–XXL, dan perawatan The Core Anthem. Combed 24s–30s, regular fit, Jet Black. Rp159.000."
+>
+  <section class="head">
+    <div class="wrap">
+      <p class="label">Chapter {SITE.chapter}</p>
+      <h1 class="head__title">{SITE.product}</h1>
+      <p class="lead head__lead">
+        Kaos katun combed 24s–30s, regular fit, Jet Black. Logo BSNG. di dada, MAXIMUM NOISE. di
+        punggung. {SITE.priceLabel}.
+      </p>
+      <div class="head__actions">
+        {
+          hasShopee ? (
+            <Button href={SITE.shopeeProductUrl} variant="primary" external>
+              Beli di Shopee
+            </Button>
+          ) : (
+            <Button variant="ghost">Segera dibuka.</Button>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="media">
+    <div class="wrap media__grid">
+      <PhotoSlot ratio="4/5" src={base + "images/bsng-produk-depan.jpg"} alt="Kaos The Core Anthem tampak depan, Jet Black, logo BSNG. besar di dada" caption="FOTO PRODUK DEPAN" />
+      <PhotoSlot ratio="4/5" src={base + "images/bsng-produk-belakang.jpg"} alt="Kaos The Core Anthem tampak belakang, tulisan MAXIMUM NOISE. di bawah kerah" caption="FOTO PRODUK BELAKANG" />
+      <PhotoSlot ratio="1/1" src={base + "images/bsng-detail-sablon.jpg"} alt="Detail tekstur sablon DTF doff pada logo BSNG." caption="DETAIL SABLON" />
+    </div>
+  </section>
+
+  <Section index="01" label="Spesifikasi" id="spesifikasi">
+    <h2>Yang bisa diukur.</h2>
+    <div class="spec-wrap">
+      <SpecList items={specs} />
+    </div>
+  </Section>
+
+  <Section index="02" label="Ukuran" id="ukuran">
+    <h2>Diukur dari kaos jadi.</h2>
+    <p class="mt">Toleransi jahit 1–2 cm. Ukuran diukur dari kaos jadi, bukan dari pola.</p>
+    <div class="mt-lg">
+      <SizeTable />
+    </div>
+    <PhotoSlot ratio="16/9" src={base + "images/bsng-chart-ukuran.jpg"} alt="Panduan ukuran S–XXL, lebar dada dan panjang badan kaos jadi" caption="PANDUAN UKURAN" />
+    <p class="mt note">
+      Kalau ragu di antara dua ukuran, ambil yang lebih besar — potongan ini lurus, bukan slim.
+    </p>
+  </Section>
+
+  <Section index="03" label="Perawatan" id="perawatan">
+    <h2>Perawatan.</h2>
+    <p class="mt">
+      Cuci air dingin, balik bagian dalam ke luar. Jangan pakai pemutih. Setrika dari sisi dalam,
+      hindari menekan langsung area sablon.
+    </p>
+    <p>
+      Sablon DTF tahan lama kalau tidak digosok panas dan tidak dikeringkan dengan mesin bersuhu
+      tinggi.
+    </p>
+  </Section>
+
+  <Section index="04" label="Pengiriman" id="pengiriman">
+    <h2>Pengiriman.</h2>
+    <p class="mt">
+      Dikirim dari Indonesia. Produksi 1–2 hari kerja, lalu pengiriman sesuai layanan yang dipilih
+      di Shopee.
+    </p>
+    <p>
+      Penukaran ukuran mengikuti kebijakan pengembalian Shopee. Label belum dilepas, kaos belum
+      dicuci.
+    </p>
+  </Section>
+
+  <Section index="05" label="Pertanyaan" id="tanya">
+    <h2>Pertanyaan singkat.</h2>
+    <div class="faq">
+      {
+        faq.map((item) => (
+          <div class="faq__item">
+            <h3 class="faq__q">{item.q}</h3>
+            <p class="faq__a">{item.a}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-lg">
+      <Button
+        href={contactLink}
+        variant="ghost"
+        external
+      >
+        Tanya ukuran di DM Instagram
+      </Button>
+    </div>
+  </Section>
+
+  <section class="closing">
+    <div class="wrap">
+      <Wordmark variant="mono-white" height={40} />
+      <p class="mt">Chapter {SITE.chapter} · {SITE.product} · {SITE.priceLabel}</p>
+      <p class="mt">
+        <a class="inline-link" href={`${base}`}>Kembali ke Chapter 01</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head {
+    padding-block: clamp(48px, 7vw, 88px) var(--s7);
+  }
+
+  .head__title {
+    margin-top: var(--s4);
+    font-size: var(--t-h1);
+    text-wrap: balance;
+  }
+
+  .head__lead {
+    margin-top: var(--s5);
+  }
+
+  .head__actions {
+    display: flex;
+    gap: var(--s3);
+    margin-top: var(--s6);
+  }
+
+  .media {
+    padding-bottom: var(--s7);
+  }
+
+  .media__grid {
+    display: grid;
+    gap: var(--s4);
+    grid-template-columns: 1fr;
+  }
+
+  /* Detail sablon 1:1 mengisi satu kolom; di layar kecil tetap penuh. */
+  .media__grid > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .spec-wrap {
+    margin-top: var(--s6);
+    max-width: 900px;
+  }
+
+  .mt {
+    margin-top: var(--s5);
+  }
+
+  .mt-lg {
+    margin-top: var(--s6);
+  }
+
+  .note {
+    color: var(--grey);
+    font-size: 15px;
+  }
+
+  .faq {
+    margin: var(--s6) 0 0;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .faq__item {
+    padding-block: var(--s5);
+    border-bottom: 1px solid var(--hairline);
+    display: grid;
+    gap: var(--s2);
+  }
+
+  .faq__q {
+    font-weight: 700;
+  }
+
+  .faq__a {
+    color: var(--grey);
+    max-width: 62ch;
+    font-size: 15px;
+  }
+
+  .closing {
+    border-top: 1px solid var(--hairline);
+    padding-block: var(--s8);
+  }
+
+  @media (min-width: 640px) {
+    .media__grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .media__grid > :last-child {
+      grid-column: auto;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .faq__item {
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--s6);
+      align-items: baseline;
+    }
+  }
+</style>

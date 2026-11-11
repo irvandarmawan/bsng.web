@@ -1,0 +1,32 @@
+---
+// Satu-satunya cara menampilkan logo. Jangan mengetik "BSNG." sebagai teks.
+interface Props {
+  variant?: 'primary' | 'inverse' | 'mono-black' | 'mono-white';
+  height?: number;
+  fluid?: boolean;
+  class?: string;
+}
+
+const { variant = 'primary', height = 48, fluid = false, class: cls = '' } = Astro.props;
+
+const FILES = {
+  primary: 'bsng-logo-primary.svg',
+  inverse: 'bsng-logo-inverse.svg',
+  'mono-black': 'bsng-logo-mono-black.svg',
+  'mono-white': 'bsng-logo-mono-white.svg',
+} as const;
+
+import { base } from '../config/base';
+const src = `${base}logo/${FILES[variant]}`;
+const w = Math.round((height * 4202) / 1792);
+---
+
+<img
+  src={src}
+  alt="BSNG."
+  width={fluid ? 4202 : w}
+  height={fluid ? 1792 : height}
+  class:list={['wordmark', cls]}
+  style={fluid ? 'width:100%;height:auto' : `height:${height}px;width:auto`}
+  decoding="async"
+/>

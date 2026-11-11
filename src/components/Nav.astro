@@ -1,0 +1,132 @@
+---
+import Wordmark from './Wordmark.astro';
+import Button from './Button.astro';
+import { SITE, hasShopee } from '../config/site';
+
+import { base } from '../config/base';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path.startsWith(href);
+---
+
+<header class="nav">
+  <div class="nav__inner wrap">
+    <a class="nav__logo" href={`${base}`} aria-label="BSNG. — beranda">
+      <Wordmark height={20} />
+    </a>
+
+    <nav class="nav__links" aria-label="Navigasi utama">
+      <a href={`${base}chapter01/`} aria-current={isActive(`${base}chapter01/`) ? 'page' : undefined}>Chapter 01</a>
+      <a href={`${base}manifesto/`} aria-current={isActive(`${base}manifesto/`) ? 'page' : undefined}>Manifesto</a>
+    </nav>
+
+    <div class="nav__cta">
+      {
+        hasShopee ? (
+          <Button href={SITE.shopeeProductUrl} variant="primary" size="sm" external>
+            Beli di Shopee
+          </Button>
+        ) : (
+          <span class="nav__soon label">Segera dibuka.</span>
+        )
+      }
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--ink);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s5);
+    height: var(--nav-h);
+  }
+
+  .nav__logo {
+    display: block;
+    flex: none;
+  }
+
+  /* Mobile: nav dua baris — logo + CTA di atas, tautan di bawah */
+  .nav__inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding-block: 12px;
+  }
+
+  .nav__links {
+    order: 3;
+    flex: 1 0 100%;
+    display: flex;
+    gap: var(--s5);
+    padding-top: 12px;
+    margin-top: 12px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--mono);
+    font-size: var(--t-label);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .nav__links a {
+    display: inline-block;
+    padding-block: 12px;
+    margin-block: -12px;
+  }
+
+  .nav__links a[aria-current='page'] {
+    color: var(--paper);
+    box-shadow: inset 0 -2px 0 var(--red);
+  }
+
+  .nav__links a:hover {
+    color: var(--paper);
+  }
+
+  .nav__cta :global(.btn) {
+    width: auto;
+  }
+
+  /* Mobile sempit: kecilkan tombol beli agar muat satu baris dengan logo */
+  @media (max-width: 360px) {
+    .nav__cta :global(.btn) {
+      height: 36px;
+      padding-inline: 12px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  .nav__soon {
+    white-space: nowrap;
+  }
+
+  @media (min-width: 640px) {
+    .nav__inner {
+      flex-wrap: nowrap;
+      height: var(--nav-h);
+      padding-block: 0;
+    }
+
+    .nav__links {
+      order: 0;
+      flex: 0 1 auto;
+      padding-top: 0;
+      margin-top: 0;
+      border-top: 0;
+      margin-inline-start: auto;
+      margin-inline-end: var(--s6);
+    }
+  }
+</style>

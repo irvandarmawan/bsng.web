@@ -1,0 +1,5 @@
+# Cloudflare Pages. Dipakai `npx wrangler pages deploy` (upload langsung).
+# Kalau pakai Git integration di dashboard Cloudflare, file ini tidak wajib.
+name = "bsng"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-01"

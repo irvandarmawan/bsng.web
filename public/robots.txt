@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bsng.pediaversal.my.id/sitemap.xml

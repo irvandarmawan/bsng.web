@@ -1,0 +1,15 @@
+# Dependency
+node_modules/
+
+# Hasil build — dibuat ulang oleh Cloudflare Pages
+dist/
+.astro/
+
+# Cache & state lokal
+.wrangler/
+.vercel/
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.log

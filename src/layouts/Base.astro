@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
+}
+
+const { title, description, image, jsonLd, noindex } = Astro.props;
+import { base } from '../config/base';
+const origin = Astro.site ?? new URL('https://bsng.pediaversal.my.id');
+const canonical = new URL(Astro.url.pathname, origin).href;
+const ogImage = image ?? new URL(`${base}og.jpg`, origin).href;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0A0A0A" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BSNG." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link
+      rel="preload"
+      href={`${base}fonts/Anton-400.woff2`}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+  </head>
+  <body>
+    <a class="skip" href="#main">Lewati ke konten</a>
+    <Nav />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  /* Skip link: tersembunyi sampai difokus keyboard */
+  .skip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 12px 20px;
+    background: var(--red);
+    color: var(--paper);
+    font-size: var(--t-label);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transform: translateY(-150%);
+  }
+
+  .skip:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid var(--paper);
+    outline-offset: 2px;
+  }
+</style>

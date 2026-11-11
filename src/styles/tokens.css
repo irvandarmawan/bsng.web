@@ -1,0 +1,44 @@
+/* Token desain BSNG. Sumber kebenaran: docs/01-brand.md + docs/04-desain.md */
+
+:root {
+  /* Warna — hanya empat ini */
+  --ink: #0a0a0a;
+  --paper: #ffffff;
+  --red: #e60000;
+  --red-dark: #c40000;
+  --grey: #808080;
+
+  /* Garis */
+  --hairline: rgba(255, 255, 255, 0.14);
+  --hairline-dark: rgba(10, 10, 10, 0.14);
+
+  /* Tipografi */
+  --display: 'Anton', 'Arial Narrow', Impact, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+
+  --t-h1: clamp(40px, 7vw, 84px);
+  --t-h2: clamp(28px, 4vw, 48px);
+  --t-h3: clamp(18px, 2vw, 22px);
+  --t-lead: clamp(17px, 2vw, 21px);
+  --t-body: 16px;
+  --t-label: 11px;
+
+  /* Spasi */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+  --s9: 96px;
+  --s10: 128px;
+
+  --section-y: clamp(72px, 10vw, 160px);
+
+  /* Tata letak */
+  --wrap: none;
+  --pad: 24px;
+  --nav-h: 72px;
+}

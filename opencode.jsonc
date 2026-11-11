@@ -1,0 +1,8 @@
+{
+  // Skema untuk validasi editor.
+  "$schema": "https://opencode.ai/config.json",
+
+  // Dimuat otomatis di setiap sesi bersama AGENTS.md.
+  // Dokumen lain dibaca sesuai kebutuhan (lihat peta dokumen di AGENTS.md).
+  "instructions": ["docs/01-brand.md", "docs/03-konten.md"]
+}

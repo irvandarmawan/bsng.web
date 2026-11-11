@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+
+import { base } from '../config/base';
+
+const blocks = [
+  'Kami tumbuh di ruang yang penuh suara. Notifikasi, opini, angka, janji. Semua orang bicara. Sedikit yang mengatakan sesuatu.',
+  'BSNG. dibuat untuk yang terakhir itu.',
+  'Kami tidak menjual pakaian. Kami menyediakan seragam untuk orang yang memilih berpikir sebelum bicara, dan tetap bicara setelahnya.',
+  'Satu produk. Satu warna. Satu pesan. Sisanya kebisingan.',
+];
+---
+
+<Base
+  title="Manifesto — BSNG."
+  description="Bising bukan soal volume. Pernyataan merek BSNG.: satu produk, satu warna, satu pesan."
+>
+  <article class="manifesto">
+    <div class="wrap">
+      <p class="label">Manifesto</p>
+      <h1 class="manifesto__title">Bising bukan soal volume.</h1>
+
+      <div class="blocks">
+        {blocks.map((text) => <p class="block">{text}</p>)}
+      </div>
+
+      <p class="signature">{SITE.tagline}</p>
+
+      <p class="back">
+        <a class="inline-link" href={`${base}`}>Lihat Chapter 01 →</a>
+      </p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .manifesto {
+    padding-block: clamp(48px, 7vw, 88px) var(--section-y);
+  }
+
+  .manifesto__title {
+    margin-top: var(--s5);
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+
+  .blocks {
+    margin-top: var(--s8);
+    border-top: 1px solid var(--hairline);
+  }
+
+  .block {
+    padding-block: var(--s6);
+    border-bottom: 1px solid var(--hairline);
+    font-size: clamp(17px, 2vw, 21px);
+    line-height: 1.55;
+    max-width: 46ch;
+  }
+
+  .signature {
+    font-family: var(--display);
+    text-transform: uppercase;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    font-size: var(--t-h2);
+    margin-top: var(--s8);
+  }
+
+  .back {
+    margin-top: var(--s8);
+  }
+
+</style>

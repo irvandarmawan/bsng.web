@@ -1,0 +1,42 @@
+---
+interface Props {
+  index: string;
+  label: string;
+  id?: string;
+}
+
+const { index, label, id } = Astro.props;
+---
+
+<section class="sec" id={id}>
+  <div class="wrap">
+    <p class="sec__label label">
+      <span class="sec__num">{index}</span>
+      <span class="sec__sep">/</span>
+      <span>{label}</span>
+    </p>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .sec {
+    border-top: 1px solid var(--hairline);
+    padding-block: var(--section-y);
+  }
+
+  .sec__label {
+    display: flex;
+    align-items: center;
+    gap: var(--s2);
+    margin-bottom: var(--s5);
+  }
+
+  .sec__num {
+    color: var(--grey);
+  }
+
+  .sec__sep {
+    color: var(--hairline);
+  }
+</style>
