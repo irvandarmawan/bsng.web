@@ -35,7 +35,12 @@ const socials = [
 
     <div class="foot__bottom">
       <p class="label">Made to order. Dicetak di Indonesia.</p>
-      <p class="label">© {year} BSNG.</p>
+      <p class="label">
+        © {year} BSNG. · Powered by{' '}
+        <a class="foot__credit" href={SITE.poweredBy.href} target="_blank" rel="noopener noreferrer"
+          >{SITE.poweredBy.label}</a
+        >
+      </p>
     </div>
   </div>
 </footer>
@@ -90,6 +95,17 @@ const socials = [
     letter-spacing: 0.04em;
     text-transform: none;
     color: var(--grey);
+  }
+
+  .foot__credit {
+    color: var(--grey);
+    white-space: nowrap;
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+
+  .foot__credit:hover {
+    color: var(--paper);
   }
 
   .foot__bottom {

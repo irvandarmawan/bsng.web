@@ -29,7 +29,7 @@ TIKTOK      @bsng.co
 X           @bsng.co
 
 Made to order. Dicetak di Indonesia.
-© 2026 BSNG.
+© 2026 BSNG. · Powered by www.pediaversal.my.id
 ```
 
 **Tombol:**

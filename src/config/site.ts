@@ -15,6 +15,9 @@ export const SITE = {
   // WhatsApp: tidak ada (kontak via Instagram DM @bsng.co)
   whatsapp: '',
 
+  // Kredit pembuat situs
+  poweredBy: { label: 'www.pediaversal.my.id', href: 'https://www.pediaversal.my.id' },
+
   social: {
     instagram: 'https://instagram.com/bsng.co',
     tiktok: 'https://tiktok.com/@bsng.co',
