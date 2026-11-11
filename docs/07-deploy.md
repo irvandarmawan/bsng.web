@@ -24,7 +24,7 @@ npm run build
 npx wrangler pages deploy dist --project-name bsng
 ```
 
-Sengaja **tidak ada `wrangler.toml`**. Kalau file itu ada di repo, build Pages mendeteksinya dan
+Sengaja **tanpa `wrangler.toml`**. Kalau file itu ada di repo, build Pages mendeteksinya dan
 menjalankan deploy lewat jalur Wrangler — di project Pages Git integration ini gagal dengan
 `Failed: error occurred while running deploy command`. Tanpa file itu, Pages memakai pengaturan
 dashboard apa adanya.

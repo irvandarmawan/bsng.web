@@ -41,7 +41,7 @@ npm run preview  # port 4322, URL sama seperti dev
 - Link internal & aset situs brand **wajib** memakai prefiks `base` dari `src/config/base.ts` (`const base = '/'`). Jangan pakai `import.meta.env.BASE_URL` — `base` di `astro.config.mjs` sengaja kosong. Link yang lupa prefiks akan 404 di produksi.
 - Halaman baru untuk situs brand masuk ke `src/pages/` (root). Dashboard internal di `src/pages/dashboard/`.
 - Jangan menambah dependency tanpa bertanya. Yang sudah ada hanya `astro`.
-- Deploy: Cloudflare Pages, output `dist`, Node 22 (`.nvmrc`). `public/_headers` dan `public/_redirects` dibaca Cloudflare sebagai konfigurasi — jangan dihapus atau diganti nama. Jangan menambah `wrangler.toml`: file itu membuat build Pages memakai jalur deploy Wrangler dan gagal (`Failed: error occurred while running deploy command`).
+- Deploy: Cloudflare Pages, output `dist`, Node 22 (`.nvmrc`). `public/_headers` dan `public/_redirects` dibaca Cloudflare sebagai konfigurasi — jangan dihapus atau diganti nama. Deploy memakai **Worker + Static Assets**, bukan Pages: `wrangler.jsonc` menunjuk `assets.directory = "./dist"`, nama worker `bsng-web`, `not_found_handling: 404-page`. Deploy command `npx wrangler deploy`. Jangan menambah `wrangler.toml` (format lama) — cukup `wrangler.jsonc`.
 - Jangan pakai `<img>` tanpa `width`, `height`, dan `alt`.
 - Satu `<h1>` per halaman. Heading berurutan, jangan lompat level.
 - Jangan membuat halaman yang belum ada di `docs/02-arsitektur.md`.
